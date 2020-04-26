@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "typescript": "^3.8.3"
+  },
+  "name": "div_hero",
+  "version": "1.0.0",
+  "description": "Control the almighty DIV hero",
+  "main": "index.html",
+  "author": "Sara Gowen",
+  "license": "MIT"
+}
