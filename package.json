@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@types/jquery": "^3.3.36",
+    "jquery": "^3.5.0",
     "typescript": "^3.8.3"
   },
   "name": "div_hero",
