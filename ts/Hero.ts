@@ -14,31 +14,26 @@ class Hero {
 
 
     private handleKeyDown = (event: JQuery.KeyDownEvent<Document, null, Document, Document>) => {
-        switch (event.key) {
-            case "ArrowDown": {
-                let currentPosition = this.hero.offset();
-                if (currentPosition)
+        let currentPosition = this.hero.offset();
+
+        if (currentPosition)
+            switch (event.key) {
+                case "ArrowDown": {
                     this.hero.css("margin-top", currentPosition.top + 5);
-                break;
-            }
-            case "ArrowUp": {
-                let currentPosition = this.hero.offset();
-                if (currentPosition)
+                    break;
+                }
+                case "ArrowUp": {
                     this.hero.css("margin-top", currentPosition.top - 5);
-                break;
+                    break;
+                }
+                case "ArrowLeft": {
+                    this.hero.css("margin-left", currentPosition.left - 13);
+                    break;
+                }
+                case "ArrowRight": {
+                    this.hero.css("margin-left", currentPosition.left - 3);
+                    break;
+                }
             }
-            case "ArrowLeft": {
-                let currentPosition = this.hero.offset();
-                if (currentPosition)
-                    this.hero.css("margin-left", currentPosition.left - 5);
-                break;
-            }
-            case "ArrowRight": {
-                let currentPosition = this.hero.offset();
-                if (currentPosition)
-                    this.hero.css("margin-left", currentPosition.left + 5);
-                break;
-            }
-        }
     }
 }
