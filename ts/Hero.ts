@@ -6,6 +6,9 @@ class Hero {
         this.hero.addClass("hero");
 
         this.addEventHandlers();
+
+
+        //  $(document).
     }
 
     private addEventHandlers() {
@@ -19,19 +22,19 @@ class Hero {
         if (currentPosition)
             switch (event.key) {
                 case "ArrowDown": {
-                    this.hero.css("margin-top", currentPosition.top + 5);
+                    this.hero.css("top", currentPosition.top);
                     break;
                 }
                 case "ArrowUp": {
-                    this.hero.css("margin-top", currentPosition.top - 5);
+                    this.hero.css("top", currentPosition.top - 10);
                     break;
                 }
                 case "ArrowLeft": {
-                    this.hero.css("margin-left", currentPosition.left - 13);
+                    this.hero.css("left", currentPosition.left - 10);
                     break;
                 }
                 case "ArrowRight": {
-                    this.hero.css("margin-left", currentPosition.left - 3);
+                    this.hero.css("left", currentPosition.left);
                     break;
                 }
             }
