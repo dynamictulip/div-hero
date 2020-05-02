@@ -4,7 +4,7 @@ class Hero extends GamePiece {
 
     public constructor(playAreaId: string) {
         super();
-        this.piece = $("<div class='hero'>DIV</div>").appendTo($("#" + playAreaId));
+        this.piece = $("<div class='hero'>&lt;div&gt;</div>").appendTo($("#" + playAreaId));
 
         this.addMotionSensors();
 
