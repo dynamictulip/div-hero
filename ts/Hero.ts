@@ -1,10 +1,13 @@
 class Hero extends GamePiece {
-
     protected piece: JQuery<HTMLElement>;
+    private playAreaId: string;
 
     public constructor(playAreaId: string) {
         super();
-        this.piece = $("<div class='hero'>&lt;div&gt;</div>").appendTo($("#" + playAreaId));
+
+        this.playAreaId = playAreaId
+
+        this.piece = $("<div class='hero'>&lt;div&gt;</div>").appendTo($("#" + this.playAreaId));
 
         this.addMotionSensors();
 
@@ -34,6 +37,10 @@ class Hero extends GamePiece {
                 this.currentHorizontalSpeed = this.speed
                 break;
             }
+            case "0": {
+                this.shoot();
+                break;
+            }
         }
     }
 
@@ -50,5 +57,11 @@ class Hero extends GamePiece {
                 break;
             }
         }
+    }
+
+    private shoot() {
+        let currentPosition = this.piece.offset();
+        if (currentPosition)
+            var shot = new AngleFire(this.playAreaId, currentPosition.left, currentPosition.top);
     }
 }
