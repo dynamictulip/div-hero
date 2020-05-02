@@ -5,13 +5,13 @@ class Hero extends GamePiece {
     public constructor(playAreaId: string) {
         super();
 
-        this.playAreaId = playAreaId
+        this.playAreaId = playAreaId;
 
         this.piece = $("<div class='hero'>&lt;div&gt;</div>").appendTo($("#" + this.playAreaId));
 
         this.addMotionSensors();
 
-        window.setInterval(this.moveHero, 10, this)
+        window.setInterval(this.movePiece, 10, this);
     }
 
     private addMotionSensors() {
@@ -30,11 +30,11 @@ class Hero extends GamePiece {
                 break;
             }
             case "ArrowLeft": {
-                this.currentHorizontalSpeed = -this.speed
+                this.currentHorizontalSpeed = -this.speed;
                 break;
             }
             case "ArrowRight": {
-                this.currentHorizontalSpeed = this.speed
+                this.currentHorizontalSpeed = this.speed;
                 break;
             }
             case "0": {
@@ -53,7 +53,7 @@ class Hero extends GamePiece {
             }
             case "ArrowLeft":
             case "ArrowRight": {
-                this.currentHorizontalSpeed = 0
+                this.currentHorizontalSpeed = 0;
                 break;
             }
         }
@@ -61,7 +61,34 @@ class Hero extends GamePiece {
 
     private shoot() {
         let currentPosition = this.piece.offset();
-        if (currentPosition)
-            var shot = new AngleFire(this.playAreaId, currentPosition.left, currentPosition.top);
+        let width = this.piece.width();
+
+        if (currentPosition && width)
+            var shot = new AngleFire(this.playAreaId, currentPosition.left + width, currentPosition.top);
+    }
+
+    protected hitBoundary(boundary: Boundary): void {
+        switch (boundary) {
+            case Boundary.TOP: {
+                if (this.currentVerticalSpeed < 0)
+                    this.currentVerticalSpeed = 0;
+                break;
+            }
+            case Boundary.LEFT: {
+                if (this.currentHorizontalSpeed < 0)
+                    this.currentHorizontalSpeed = 0;
+                break;
+            }
+            case Boundary.RIGHT: {
+                if (this.currentHorizontalSpeed > 0)
+                    this.currentHorizontalSpeed = 0;
+                break;
+            }
+            case Boundary.BOTTOM: {
+                if (this.currentVerticalSpeed > 0)
+                    this.currentVerticalSpeed = 0;
+                break;
+            }
+        }
     }
 }
